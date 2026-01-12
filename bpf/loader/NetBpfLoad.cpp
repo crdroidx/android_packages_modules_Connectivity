@@ -1618,23 +1618,6 @@ static int doLoad(char** argv, char * const envp[]) {
             bad = true;
         }
 
-#define REQUIRE(maj, min, sub) \
-        if (isKernelVersion(maj, min) && !isAtLeastKernelVersion(maj, min, sub)) { \
-            ALOGW("Android V+ requires %d.%d kernel to be %d.%d.%d+.", maj, min, maj, min, sub); \
-            bad = true; \
-        }
-
-        REQUIRE(4, 19, 236)
-        REQUIRE(5, 4, 186)
-        REQUIRE(5, 10, 199)
-        REQUIRE(5, 15, 136)
-        REQUIRE(6, 1, 57)
-        REQUIRE(6, 6, 0)
-        REQUIRE(6, 12, 0)
-        REQUIRE(6, 18, 9)
-
-#undef REQUIRE
-
         if (bad) {
             ALOGE("Unsupported kernel version (%07x).", kernelVer);
         }
